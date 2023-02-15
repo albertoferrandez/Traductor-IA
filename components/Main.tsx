@@ -9,6 +9,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 const Main = () => {
   const notify = () => toast('Copiado en el portapapeles!');
+  
   const {
     setFlag,
     text,
