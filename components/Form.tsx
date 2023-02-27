@@ -5,7 +5,7 @@ import {
   FormEventHandler,
   SetStateAction,
 } from "react";
-import { languages } from "./languages";
+import { lenguas } from "./lenguas";
 
 interface Props {
   search: FormEventHandler<HTMLFormElement>;
@@ -37,45 +37,31 @@ const Form = ({
           error === "" ? "border-0" : "border border-red-500"
         } resize-none border-0 h-40 w-full p-7 rounded-md mt-5 text-lg focus:outline-none`}
       />
-      <div className="h-7">{error && <p className="text-center text-white bg-red-500 rounded"> {error} </p>}</div>
+      <div className="h-7">
+        {error && (
+          <p className="text-center text-white bg-red-500 rounded"> {error} </p>
+        )}
+      </div>
 
       <div className="mt-10">
         <h1 className="text-center text-xl font-extrabold">
           ¿A QUE IDIOMA QUIERES TRADUCIRLO?
         </h1>
-        <ul className="flex items-center justify-center mt-5 flex-wrap">
-          {languages.map((language) => (
-            <li key={language.language} className="mx-6 my-6">
-              <input
-                type="radio"
-                id={language.language}
-                name="languages"
-                value={language.language}
-                onChange={(e) => setFlag(e.target.value)}
-                className="hidden absolute"
-              />
-              <label
-                htmlFor={language.language}
-                className="cursor-pointer opacity-50 mb-3"
-              >
-                <Image
-                  src={language.flag}
-                  alt={language.language}
-                  height={32}
-                  width={32}
-                  className="mx-6"
-                />
-
-                <div
-                  role="tooltip"
-                  className="opacity-0 absolute z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm tooltip dark:bg-gray-700"
-                >
-                  {language.tooltip}
-                </div>
-              </label>
-            </li>
-          ))}
-        </ul>
+        <div className="mt-14 h-14 flex justify-center items-center">
+          <select
+            name="languages"
+            id="languages"
+            onChange={(e) => setFlag(e.target.value)}
+            className="p-4 w-full bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          >
+            <option defaultValue={''}>Selecciona un idioma :</option>
+            {lenguas.map((language) => (
+              <option key={language} value={language}>
+                {language}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <div className="mt-14 h-14 flex justify-center items-center">
